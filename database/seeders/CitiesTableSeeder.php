@@ -16,5 +16,7 @@ class CitiesTableSeeder extends Seeder
         $c1 = new City;
         $c1->name = "Los Angeles";
         $c1->save();
+
+        City::factory()->count(3)->create();
     }
 }
