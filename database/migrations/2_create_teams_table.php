@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->bigInteger('city_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('city_id')->references('id')->on('cities')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

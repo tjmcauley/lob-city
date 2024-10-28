@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger("team_id")->unsigned();
+            $table->bigInteger('team_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign("team_id")->references("id")->on("teams")
-                ->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('team_id')->references('id')->on('teams')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
