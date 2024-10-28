@@ -9,4 +9,8 @@ class City extends Model
     public function teams() {
         return $this->hasMany(Team::class);
     }
+
+    public function venues() {
+        return $this->hasMany(Venue::class);
+    }
 }
