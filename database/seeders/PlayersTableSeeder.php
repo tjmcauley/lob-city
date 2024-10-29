@@ -22,5 +22,7 @@ class PlayersTableSeeder extends Seeder
         $p2->name = "Kawhi Leonard";
         $p2->team_id = 2;
         $p2->save();
+
+        Player::factory()->count(3)->create();
     }
 }
