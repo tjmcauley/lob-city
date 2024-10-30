@@ -18,5 +18,7 @@ class VenuesTableSeeder extends Seeder
         $v1->city_id = 1;
         $v1->team_id = 1;
         $v1->save();
+
+        Venue::factory()->count(3)->create();
     }
 }
