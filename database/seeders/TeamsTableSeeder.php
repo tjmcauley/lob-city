@@ -22,5 +22,7 @@ class TeamsTableSeeder extends Seeder
         $t2->name = "Los Angeles Clippers";
         $t2->city_id = 1;
         $t2->save();
+
+        Team::factory()->count(3)->create();
     }
 }

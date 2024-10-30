@@ -17,10 +17,10 @@ class PlayerFactory extends Factory
      */
     public function definition(): array
     {
-        $num_of_teams = DB::table('teams')->count();
+        $num_of_teams = DB::table('teams')->count(); // Retrieve number of rows in teams table
         return [
             'name' => fake()->name(),
-            'team_id' => fake()->NumberBetween(1, $num_of_teams), //Get number of teams and assign randomly
+            'team_id' => fake()->NumberBetween(1, $num_of_teams), // Generate an ID showing which team a player plays for
         ];
     }
 }
