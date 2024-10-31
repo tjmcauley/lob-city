@@ -20,4 +20,12 @@ class Team extends Model
     public function players() {
         return $this->hasMany(Player::class);
     }
+
+    public function home_games() {
+        return $this->hasMany(Game::class, 'home_team_id');
+    }
+
+    public function away_games() {
+        return $this->hasMany(Game::class, 'away_team_id');
+    }
 }

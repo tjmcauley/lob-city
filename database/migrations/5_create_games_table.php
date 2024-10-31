@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('venues', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->bigInteger('city_id')->unsigned();
+            $table->bigInteger('home_team_id')->unsigned();
+            $table->bigInteger('away_team_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('city_id')->references('id')->on('cities')
+            $table->foreign('home_team_id')->references('id')->on('teams')
+                ->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->foreign('away_team_id')->references('id')->on('teams')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('venues');
+        Schema::dropIfExists('games');
     }
 };
