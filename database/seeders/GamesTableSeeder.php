@@ -16,6 +16,7 @@ class GamesTableSeeder extends Seeder
         $g1 = new Game;
         $g1->home_team_id = 1;
         $g1->away_team_id = 2;
+        $g1->date = '2024-11-01';
         $g1->save();
 
         Game::factory()->count(25)->create();

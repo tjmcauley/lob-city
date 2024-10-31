@@ -17,7 +17,7 @@ class GameFactory extends Factory
      */
     public function definition(): array
     {
-        $num_of_teams = DB::table('teams')->count(); // Number of rows in teams table
+        $num_of_teams = DB::table('teams')->count();
         $fake_home_team_id = fake()->NumberBetween(1, $num_of_teams);
         $fake_away_team_id = fake()->NumberBetween(1, $num_of_teams);
         
@@ -28,8 +28,9 @@ class GameFactory extends Factory
         }
         
         return [
-            'home_team_id' => $fake_home_team_id, // ID for the home team
-            'away_team_id' => $fake_away_team_id, // ID for the away team
+            'home_team_id' => $fake_home_team_id,
+            'away_team_id' => $fake_away_team_id,
+            'date' => fake()->date(),
         ];
     }
 }

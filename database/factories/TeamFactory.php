@@ -17,12 +17,21 @@ class TeamFactory extends Factory
      */
     public function definition(): array
     {
-        $num_of_cities = DB::table('cities')->count(); // Number of rows in cities table
-        $num_of_venues = DB::table('venues')->count(); // Number of rows in venues table
+        $num_of_cities = DB::table('cities')->count();
+        $num_of_venues =  DB::table('venues')->count();
+
+        $city_id = fake()->NumberBetween(1, $num_of_cities);
+        $venue_id = fake()->NumberBetween(1, $num_of_venues);
+
+        // Get name of an existing city
+        $city_name = DB::table('cities')->where('id', '=', $city_id)
+            ->pluck('name')[0];
+
         return [
-            'name' => fake()->city() . ' ' . fake()->word(),
-            'city_id' => fake()->NumberBetween(1, $num_of_cities), // ID for the city a team belongs to
-            'venue_id' => fake()->NumberBetween(1, $num_of_cities), // ID for the venue which belongs to a team
+            // Basketball team name consists of an existing city + random word
+            'name' => $city_name . ' ' . fake()->word(),
+            'city_id' => $city_id,
+            'venue_id' => $venue_id,
         ];
     }
 }
