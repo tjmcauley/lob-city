@@ -16,11 +16,13 @@ class TeamsTableSeeder extends Seeder
         $t1 = new Team;
         $t1->name = "Los Angeles Lakers";
         $t1->city_id = 1;
+        $t1->venue_id = 1;
         $t1->save();
 
         $t2 = new Team;
         $t2->name = "Los Angeles Clippers";
         $t2->city_id = 1;
+        $t2->venue_id = 2;
         $t2->save();
 
         Team::factory()->count(3)->create();

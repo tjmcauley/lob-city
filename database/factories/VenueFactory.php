@@ -17,13 +17,12 @@ class VenueFactory extends Factory
      */
     public function definition(): array
     {
-        $num_of_teams = DB::table('teams')->count(); // Retrieve number of rows in teams table
-        $num_of_cities = DB::table('cities')->count(); // Retrieve number of rows in city table
-        $venue_names = ['Center', 'Arena', 'Forum', 'Garden', 'Fieldhouse'];
+        $num_of_teams = DB::table('teams')->count(); // Number of rows in teams table
+        $num_of_cities = DB::table('cities')->count(); // Number of rows in cities table
+        $venue_names = ['Center', 'Arena', 'Forum', 'Garden', 'Fieldhouse', 'Dome'];
         return [
             'name' => fake()->company() . ' ' . fake()->randomElement($venue_names),
-            'team_id' => fake()->NumberBetween(1, $num_of_teams), // Generate an ID showing which team a player plays for
-            'city_id' => fake()->NumberBetween(1, $num_of_cities), // Generate an ID showing which team a player plays for
+            'city_id' => fake()->NumberBetween(1, $num_of_cities), // ID for the city a venue belongs to
         ];
     }
 }

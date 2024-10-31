@@ -17,10 +17,12 @@ class TeamFactory extends Factory
      */
     public function definition(): array
     {
-        $num_of_cities = DB::table('cities')->count(); // Retrieve number of rows in city table
+        $num_of_cities = DB::table('cities')->count(); // Number of rows in cities table
+        $num_of_venues = DB::table('venues')->count(); // Number of rows in venues table
         return [
             'name' => fake()->city() . ' ' . fake()->word(),
-            'city_id' => fake()->NumberBetween(1, $num_of_cities), // Generate an ID showing which city a team belongs to
+            'city_id' => fake()->NumberBetween(1, $num_of_cities), // ID for the city a team belongs to
+            'venue_id' => fake()->NumberBetween(1, $num_of_cities), // ID for the venue which belongs to a team
         ];
     }
 }

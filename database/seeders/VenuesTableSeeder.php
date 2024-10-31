@@ -16,8 +16,12 @@ class VenuesTableSeeder extends Seeder
         $v1 = new Venue;
         $v1->name = "Crypto.com Arena";
         $v1->city_id = 1;
-        $v1->team_id = 1;
         $v1->save();
+
+        $v2 = new Venue;
+        $v2->name = "Intuit Dome";
+        $v2->city_id = 1;
+        $v2->save();
 
         Venue::factory()->count(3)->create();
     }
