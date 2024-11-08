@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('/teams', [TeamController::class, 'index']);
+
+Route::get('/teams/{id}', [TeamController::class, 'show'])->name('teams.show');
