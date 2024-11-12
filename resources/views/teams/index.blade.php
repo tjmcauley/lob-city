@@ -9,4 +9,6 @@
             <li><a href="{{ route('teams.show', ['id' => $team->id]) }}"> {{$team->name }}</a></li>
         @endforeach
     </ul>
+    
+    <a href="{{ route('teams.create') }}">Add a team</a>
 @endsection

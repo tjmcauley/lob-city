@@ -21,7 +21,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return view('teams.create');
     }
 
     /**
@@ -29,7 +29,21 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Needs to validate that city and venue ids exist
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'city_id' => 'required|integer',
+            'venue_id' => 'required|integer',
+        ]);
+
+        $a = new Team;
+        $a->name = $validatedData['name'];
+        $a->city_id = $validatedData['city_id'];
+        $a->venue_id = $validatedData['venue_id'];
+        $a->save();
+
+        session()->flash('message', 'team was created!');
+        return redirect()->route('teams.index');
     }
 
     /**
