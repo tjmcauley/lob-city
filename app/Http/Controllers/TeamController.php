@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\City;
+use App\Models\Venue;
 
 class TeamController extends Controller
 {
@@ -21,7 +23,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('teams.create');
+        $cities = City::all();
+        $venues = Venue::all();
+        return view('teams.create', ['cities' => $cities, 'venues' => $venues]);
     }
 
     /**
