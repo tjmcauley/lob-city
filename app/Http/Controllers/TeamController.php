@@ -80,6 +80,10 @@ class TeamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $team = Team::findOrFail($id);
+        $team->delete();
+
+        # Flash message
+        return redirect()->route('teams.index')->with('message', 'Team was deleted.');
     }
 }
