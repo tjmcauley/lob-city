@@ -20,6 +20,6 @@ Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.crea
 
 Route::post('/teams',[TeamController::class, 'store'])->name('teams.store');
 
-Route::get('/teams/{id}', [TeamController::class, 'show'])->name('teams.show');
+Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 Route::delete('/teams/{id}', [TeamController::class, 'destroy'])->name('teams.destroy');
