@@ -11,7 +11,7 @@ Route::get('/', function () {
 # City routes
 Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
 
-Route::get('/cities/{id}', [CityController::class, 'show'])->name('cities.show');
+Route::get('/cities/{city}', [CityController::class, 'show'])->name('cities.show');
 
 # Team routes
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');

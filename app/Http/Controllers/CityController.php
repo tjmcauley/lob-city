@@ -35,9 +35,9 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(City $city)
     {
-        $city = City::findOrFail($id);
+
         return view('cities.show', ['city' => $city]);
     }
 
