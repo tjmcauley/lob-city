@@ -19,5 +19,7 @@ class ProfilesTableSeeder extends Seeder
         $p1->username = "johnnytest";
         $p1->password = "johnpassword";
         $p1->save();
+
+        Profile::factory()->count(5)->create();
     }
 }

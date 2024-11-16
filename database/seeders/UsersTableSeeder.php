@@ -17,5 +17,7 @@ class UsersTableSeeder extends Seeder
         $u1->name = "John Test";
         $u1->date_of_birth = "2000-01-01";
         $u1->save();
+
+        User::factory()->count(5)->create();
     }
 }
