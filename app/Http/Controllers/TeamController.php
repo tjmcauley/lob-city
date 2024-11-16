@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\City;
+use App\Models\Venue;
 
 class TeamController extends Controller
 {
@@ -21,7 +23,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('teams.create');
+        $cities = City::all();
+        $venues = Venue::all();
+        return view('teams.create', ['cities' => $cities, 'venues' => $venues]);
     }
 
     /**
@@ -49,9 +53,8 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Team $team)
     {
-        $team = Team::findOrFail($id);
         return view('teams.show', ['team' => $team]);
     }
 
@@ -76,6 +79,10 @@ class TeamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $team = Team::findOrFail($id);
+        $team->delete();
+
+        # Flash message
+        return redirect()->route('teams.index')->with('message', 'Team was deleted.');
     }
 }
