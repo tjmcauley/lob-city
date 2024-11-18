@@ -1,1 +1,1 @@
-<img src="{{ URL('/images/LobCityLogo1.png') }}" {{$attributesZ}}>
+<img src="{{ URL('/images/LobCityLogo1.png') }}" {{$attributes}}>
