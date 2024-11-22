@@ -25,6 +25,7 @@ class UserFactory extends Factory
     {
         $hashed_password = Hash::make(fake()->password());
         return [
+            'type' => fake()->NumberBetween(1, 3),
             'email' => fake()->unique()->email(),
             'password' => $hashed_password,
         ];

@@ -17,6 +17,14 @@ class ProfilesTableSeeder extends Seeder
         $p1->user_id = 1;
         $p1->save();
 
-        Profile::factory()->count(5)->create();
+        $p2 = new Profile;
+        $p2->user_id = 2;
+        $p2->save();
+
+        $p3 = new Profile;
+        $p3->user_id = 3;
+        $p3->save();
+
+        Profile::factory()->count(2)->create();
     }
 }
