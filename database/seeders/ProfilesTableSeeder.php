@@ -15,9 +15,6 @@ class ProfilesTableSeeder extends Seeder
     {
         $p1 = new Profile;
         $p1->user_id = 1;
-        $p1->email = "test@gmail.com";
-        $p1->username = "johnnytest";
-        $p1->password = "johnpassword";
         $p1->save();
 
         Profile::factory()->count(5)->create();

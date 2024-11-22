@@ -1,12 +1,21 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Lob Cities') }}
+        </h2>
 
-@section('title', 'Cities list')
-
-@section('content')
-    <p>Lob Cities</p>
-    <ul>
-        @foreach ($cities as $city)
-            <li><a href="{{ route('cities.show', $city) }}"> {{ $city->name }}</a></li>
-        @endforeach
-    </ul>
-@endsection
+        <div class="py-12">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <ul>
+                            @foreach ($cities as $city)
+                                <li><a href="{{ route('cities.show', $city) }}"><b> {{ $city->name }} </b></a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </x-slot>
+</x-app-layout>

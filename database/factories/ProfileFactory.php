@@ -21,9 +21,6 @@ class ProfileFactory extends Factory
         $num_of_users = DB::table('users')->count();
         return [
             'user_id' => fake()->unique()->numberBetween(2, $num_of_users),
-            'email' => fake()->unique()->email(),
-            'username' => fake()->unique()->username(),
-            'password' => fake()->password(),
         ];
     }
 }

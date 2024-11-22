@@ -23,9 +23,10 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $hashed_password = Hash::make(fake()->password());
         return [
-            'name' => fake()->name(),
-            'date_of_birth' => fake()->date(),
+            'email' => fake()->unique()->email(),
+            'password' => $hashed_password,
         ];
     }
 

@@ -1,16 +1,22 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ $team->name }}
+        </h2>
+    </x-slot>
 
-@section('title', '{{$team}}')
-
-@section('content')
-    <ul>
-        <li>Name: {{$team->name}}</li>
-    </ul>
-
-    <form method="POST"
-        action="{{ route('teams.destroy', ['id' => $team->id]) }}">
-        @csrf
-        @method("DELETE")
-        <button type="submit"> Delete </button>
-    </form>
-@endsection
+    <body class="font-sans text-gray-900 antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+            <!-- Session Status -->
+            <form method="POST" action="{{ route('teams.destroy', ['id' => $team->id]) }}">
+                @csrf
+                @method("DELETE")
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ms-3">
+                        {{ __('Delete') }}
+                    </x-primary-button>
+                </div>
+            </form>
+        </div>
+    </body>
+</x-app-layout>
