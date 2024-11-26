@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Team;
 use App\Models\City;
 use App\Models\Venue;
@@ -31,8 +32,14 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Team $team)
     {
+
+        # Only allowing admins to add teams
+        if ($request->user()->cannot('create', $team)) {
+            abort(403);
+        }
+
         //Needs to validate that city and venue ids exist
         $validatedData = $request->validate([
             'name' => 'required|max:255',

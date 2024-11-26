@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Login
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,6 @@ class Login
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return redirect()->route('home');
+        return $next($request);
     }
 }
