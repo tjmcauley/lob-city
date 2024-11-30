@@ -20,7 +20,7 @@ class ProfileFactory extends Factory
     {
         $num_of_users = DB::table('users')->count();
         return [
-            'user_id' => fake()->unique()->numberBetween(2, $num_of_users),
+            'user_id' => fake()->unique()->numberBetween(3, $num_of_users),
         ];
     }
 }

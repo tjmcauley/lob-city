@@ -14,12 +14,27 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $hashed_password = Hash::make('johnpassword');
+        $hashed_password = Hash::make('admin');
         $u1 = new User;
-        $u1->email = "test@gmail.com";
+        $u1->type = 1; // type 1 = admin
+        $u1->email = "admin@gmail.com";
         $u1->password = $hashed_password;
         $u1->save();
 
-        User::factory()->count(5)->create();
+        $hashed_password = Hash::make('verified');
+        $u2 = new User;
+        $u2->type = 2; // type 2 = verified
+        $u2->email = "verified@gmail.com";
+        $u2->password = $hashed_password;
+        $u2->save();
+
+        $hashed_password = Hash::make('standard');
+        $u3 = new User;
+        $u3->type = 3; // type 3 = standard
+        $u3->email = "standard@gmail.com";
+        $u3->password = $hashed_password;
+        $u3->save();
+
+        User::factory()->count(2)->create();
     }
 }

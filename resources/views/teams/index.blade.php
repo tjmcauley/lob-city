@@ -14,7 +14,9 @@
                             @endforeach
                         </ul>
 
+                        @can('admin')
                         <a href="{{ route('teams.create') }}">Add a team</a>
+                        @endcan
                     </div>
                 </div>
             </div>
