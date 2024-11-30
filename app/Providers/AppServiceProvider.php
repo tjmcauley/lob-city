@@ -32,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
 
         # Team gates
         Gate::define('create-team', [TeamPolicy::class, 'create']);
+        Gate::define('delete-team', [TeamPolicy::class, 'delete']);
     }
 }

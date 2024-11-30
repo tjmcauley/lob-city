@@ -84,9 +84,13 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Team $team)
     {
-        $team = Team::findOrFail($id);
+        # Only allow admins to delete teams
+        if ($request->user()->cannot('delete', $team)) {
+            abort(403);
+        }
+
         $team->delete();
 
         # Flash message

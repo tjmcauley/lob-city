@@ -7,9 +7,9 @@
 
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            @can('admin')
             <!-- Session Status -->
-            <form method="POST" action="{{ route('teams.destroy', ['id' => $team->id]) }}">
+            @can('admin')
+            <form method="POST" action="{{ route('teams.destroy', ['team' => $team]) }}">
                 @csrf
                 @method("DELETE")
                 <div class="flex items-center justify-end mt-4">

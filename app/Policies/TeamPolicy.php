@@ -30,8 +30,6 @@ class TeamPolicy
     public function create(User $user): bool
     {
         return $user->type === 1;
-            // ? Response::allow()
-            // : Response::deny('You are not authorized to make a team.');
     }
 
     /**
@@ -47,7 +45,7 @@ class TeamPolicy
      */
     public function delete(User $user, Team $team): bool
     {
-        //
+        return $user->type === 1;
     }
 
     /**
