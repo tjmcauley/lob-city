@@ -21,6 +21,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        # Gates for different user types
+        Gate::define('admin', function($user) {
+            return $user->type == 1;
+        });
+
+        Gate::define('verified', function($user) {
+            return $user->type == 2;
+        });
+
+        # Team gates
         Gate::define('create-team', [TeamPolicy::class, 'create']);
     }
 }

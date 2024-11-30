@@ -35,7 +35,7 @@ class TeamController extends Controller
     public function store(Request $request, Team $team)
     {
 
-        # Only allowing admins to add teams
+        # Only allow admins to add teams
         if ($request->user()->cannot('create', $team)) {
             abort(403);
         }
