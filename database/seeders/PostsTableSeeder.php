@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
     public function run(): void
     {
         $p1 = new Post;
-        $p1->image_name = "test_image.jpg";
+        $p1->image_name = "images/test_image.jpg";
         $p1->caption = "My favourite dunk";
         $p1->likes = 50;
         $p1->user_id = 3;

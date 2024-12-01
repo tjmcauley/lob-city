@@ -11,7 +11,7 @@
                         <ul>
                             @foreach ($posts as $post)
                                 <h2> {{ $post->caption }} </h2>
-                                <li><a href="{{ route('posts.show', $post) }}"><b> <img src= "{{ URL('/images/' . $post->image_name) }}"> </b></a></li>
+                                <li><a href="{{ route('posts.show', $post) }}"><b> <img src= "{{ asset('/storage/' . $post->image_name) }}"> </b></a></li>
                             @endforeach
                         </ul>
 

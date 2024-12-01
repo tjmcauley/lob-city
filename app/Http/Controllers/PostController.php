@@ -30,12 +30,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $p = new Post;
-        $p->user_id = $request->user()['id'];
-        $p->image_name = $request['image'];
-        $p->caption = $request['caption'];
-        $p->likes = 0;
-        $p->save();
+        $file = $request->hasFile('image');
+        if ($file) {
+            $new_file = $request->file('image');
+            $file_path = $new_file->store('images');
+
+            $p = new Post;
+            $p->user_id = $request->user()['id'];
+            $p->image_name = $file_path;
+            $p->caption = $request['caption'];
+            $p->likes = 0;
+            $p->save();
+        }
 
         session()->flash('message', 'post was uploaded!');
         return redirect()->route('posts.index');
