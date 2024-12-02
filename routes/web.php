@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Middleware\Login;
 
 # Login page by default
@@ -37,7 +38,10 @@ Route::get('/posts/create', [PostController::class, 'create'])->name('posts.crea
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+# Comment routes
+Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
 
 # Home view once logged in
 Route::get('/home', function () {

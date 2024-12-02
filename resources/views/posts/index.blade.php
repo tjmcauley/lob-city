@@ -11,8 +11,35 @@
                         <ul>
                             @foreach ($posts as $post)
                             <h2> {{ $post->caption }} </h2>
-                            <li><a href="{{ route('posts.show', $post) }}"><b> <img
-                                            src="{{ asset('/storage/' . $post->image_name) }}"> </b></a></li>
+                            <li style="list-style: none;">
+                                <img src="{{ asset('/storage/' . $post->image_name) }}" />
+                                <ul>
+                                    @foreach ($comments as $comment)
+                                    @if ($comment->post_id === $post->id)
+                                    <li style="list-style: none;">
+                                        "{{ $comment->content }}"
+                                    </li>
+                                    @endif
+                                </ul>
+                                @endforeach
+
+                                <!-- Form to leave comments -->
+                                <!-- Session Status -->
+                                <form method="POST" action="{{ route('comments.store', ['post' => $post]) }}">
+                                    @csrf
+                                    <!-- Comment content -->
+                                    <div class="mt-4">
+                                        <x-text-input name="content" class="block mt-1 w-full" type="text"
+                                            value="{{ old('content') }}" />
+                                    </div>
+
+                                    <div class="flex items-center justify-end mt-4">
+                                        <x-primary-button class="ms-3">
+                                            {{ __('Comment') }}
+                                        </x-primary-button>
+                                    </div>
+                                </form>
+                            </li>
                             @endforeach
                         </ul>
 
@@ -20,6 +47,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </x-slot>
 </x-app-layout>
