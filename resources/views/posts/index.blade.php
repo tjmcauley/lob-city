@@ -11,8 +11,19 @@
                         <ul>
                             @foreach ($posts as $post)
                             <h2> {{ $post->caption }} </h2>
-                            <li><a href="{{ route('posts.show', $post) }}"><b> <img
-                                            src="{{ asset('/storage/' . $post->image_name) }}"> </b></a></li>
+                            <li>
+                                <a href="{{ route('posts.show', $post) }}"> <img
+                                        src="{{ asset('/storage/' . $post->image_name) }}" />
+                                    <ul>
+                                        @foreach ($comments as $comment)
+                                        @if ($comment->post_id === $post->id)
+                                        <li>
+                                            <h3>"{{ $comment->content }}"<h3>
+                                        </li>
+                                        @endif
+                                    </ul>
+                                    @endforeach
+                            </li>
                             @endforeach
                         </ul>
 
@@ -20,6 +31,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </x-slot>
 </x-app-layout>
