@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\PostController;
 use App\Http\Middleware\Login;
 
 # Login page by default
@@ -17,15 +18,26 @@ Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
 Route::get('/cities/{city}', [CityController::class, 'show'])->name('cities.show');
 
 # Team routes
-Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
-
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
+
+Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
 
 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
 
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
+
+# Post routes
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 # Home view once logged in
 Route::get('/home', function () {

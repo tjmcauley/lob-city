@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('teams.index')" :active="request()->routeIs('teams.index')">
                         {{ __('Teams') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                        {{ __('Posts') }}
+                    </x-nav-link>
                 </div>
             </div>
 
