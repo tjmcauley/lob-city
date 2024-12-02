@@ -10,8 +10,9 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <ul>
                             @foreach ($posts as $post)
-                                <h2> {{ $post->caption }} </h2>
-                                <li><a href="{{ route('posts.show', $post) }}"><b> <img src= "{{ asset('/storage/' . $post->image_name) }}"> </b></a></li>
+                            <h2> {{ $post->caption }} </h2>
+                            <li><a href="{{ route('posts.show', $post) }}"><b> <img
+                                            src="{{ asset('/storage/' . $post->image_name) }}"> </b></a></li>
                             @endforeach
                         </ul>
 
