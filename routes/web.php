@@ -7,6 +7,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Middleware\Login;
+use App\Livewire\Counter;
 
 # Login page by default
 Route::get('/', function () {
@@ -42,6 +43,9 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 
 # Comment routes
 Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
+
+# Livewire routes
+Route::get('/counter', Counter::class);
 
 # Home view once logged in
 Route::get('/home', function () {
