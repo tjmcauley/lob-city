@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\User;
 
 class CreatePost extends Component
 {
@@ -31,6 +32,11 @@ class CreatePost extends Component
     public function posts()
     {
         return Post::all();
+    }
+
+    public function users() 
+    {
+        return User::all();    
     }
 
     public function render()

@@ -18,6 +18,7 @@
         <ul>
             @foreach ($this->posts() as $post)
             <li style="list-style: none;">
+                <h1> {{ $post->user->email }} </h1>
                 <h2> {{ $post->caption }} </h2>
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
                 @foreach ($post->comments as $comment)
