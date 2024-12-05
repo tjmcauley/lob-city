@@ -1,16 +1,25 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $post->caption }}
-        </h2>
+        <div class="grid grid-cols-3 gap-4 text-white">
+            @foreach ($posts as $post)
+            @if ($post->user_id === $user->id)
+            <div>
+                <h2> {{ $post->caption }} </h2>
+                <img src="{{ asset('/storage/' . $post->image_name) }}" />
+            </div>
+            @endif
+            @endforeach
+        </div>
     </x-slot>
+
+
 
     <body class="font-sans text-gray-900 antialiased">
         <div
             class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <!-- Session Status -->
             @can('admin')
-            <form method="POST" action="{{ route('teams.destroy', ['team' => $team]) }}">
+            <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
                 @csrf
                 @method("DELETE")
                 <div class="flex items-center justify-end mt-4">
