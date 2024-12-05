@@ -14,19 +14,30 @@
         <button class="ms-3" wire:click="create_post" type="submit">Post</button>
     </div>
 
-    <div class="text-white">
-        <ul>
-            @foreach ($this->posts() as $post)
-            <li style="list-style: none;">
-                <a href="{{ route('posts.show', $post->user) }}"> <h1> {{ $post->user->email }} </h1> </a>
+    <ul>
+        @foreach ($this->posts() as $post)
+        <li style="list-style: none;">
+            <div class="text-lg font-semibold text-white">
+                <a href="{{ route('posts.show', $post->user) }}">
+                    <h1> {{ $post->user->email }} </h1>
+                </a>
+            </div>
+            <div
+                class="text-white text-lg font-semibold text-center bg-gray-800 p-4 rounded-lg shadow-lg max-w-md mx-auto">
                 <h2> {{ $post->caption }} </h2>
+            </div>
+            <div class="flex justify-center items-center space-x-4 p-4">
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
-                @foreach ($post->comments as $comment)
-                <h2>"{{ $comment->content }}"</h2>
-                @endforeach
-            </li>
-            <livewire-create-comment :post="$post" />
+            </div>
+            <div class="text-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto">
+            @foreach ($post->comments as $comment)
+            <h2>"{{ $comment->content }}"</h2>
             @endforeach
-        </ul>
-    </div>
+            </div>
+        </li>
+        <div class="flex justify-center items-center space-x-4 p-4">
+            <livewire-create-comment :post="$post" />
+        </div>
+        @endforeach
+    </ul>
 </div>
