@@ -7,10 +7,9 @@
                 <h2> {{ $post->caption }} </h2>
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
             </div>
-            <div
-                class=" flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-                
-                @can('deletable', ['post' => $post])
+            <div class=" flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+
+                @can('authorised', ['post' => $post])
                 <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
                     @csrf
                     @method("DELETE")
@@ -20,6 +19,7 @@
                         </x-primary-button>
                     </div>
                 </form>
+                <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit a team</a>
                 @endcan
             </div>
             @endif

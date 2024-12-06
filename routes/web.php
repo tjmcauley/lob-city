@@ -16,30 +16,23 @@ Route::get('/', function () {
 
 # City routes
 Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
-
 Route::get('/cities/{city}', [CityController::class, 'show'])->name('cities.show');
 
 # Team routes
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
-
 Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
-
 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
-
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
-
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
 
 # Post routes
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-
 Route::get('/posts/{user}', [PostController::class, 'show'])->name('posts.show');
-
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}/', [PostController::class, 'update'])->name('posts.update');
 
 # Comment routes
 Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');

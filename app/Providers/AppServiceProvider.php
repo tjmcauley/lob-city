@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->type == 1;
         });
 
-        Gate::define('deletable', function($user, $post) {
+        Gate::define('authorised', function($user, $post) {
             return $user->type === 1 || $user->id === $post->user_id;
         });
 
