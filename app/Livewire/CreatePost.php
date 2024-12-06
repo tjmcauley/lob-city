@@ -31,7 +31,7 @@ class CreatePost extends Component
 
     public function posts()
     {
-        return Post::all();
+        return Post::orderBy('created_at', 'desc')->paginate(2);
     }
 
     public function users() 
