@@ -77,8 +77,16 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Post $post)
     {
-        //
+        # Only allow admins to delete teams
+        if ($request->user()->cannot('delete', $post)) {
+            abort(403);
+        }
+        
+            $post->delete();
+        
+            # Flash message
+            return redirect()->route('posts.index')->with('message', 'Post was deleted.');
     }
 }
