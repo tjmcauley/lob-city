@@ -21,7 +21,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        return $user->type === 1 || $user->type === $post->user_id;
+        return $user->type === 1 || $user->id === $post->user_id;
     }
 
     /**
@@ -32,12 +32,21 @@ class PostPolicy
         //
     }
 
+
+    /**
+     * Determine whether the user can edit the model.
+     */
+    public function edit(User $user, Post $post): bool
+    {
+        return $user->type === 1 || $user->id === $post->user_id;
+    }
+
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Post $post): bool
     {
-        //
+        return $user->type === 1 || $user->id === $post->user_id;
     }
 
     /**
@@ -45,7 +54,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return $user->type === 1 || $user->type === $post->user_id;
+        return $user->type === 1 || $user->id === $post->user_id;
     }
 
     /**

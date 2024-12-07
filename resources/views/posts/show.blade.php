@@ -8,7 +8,6 @@
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
             </div>
             <div class=" flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-
                 @can('authorised', ['post' => $post])
                 <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
                     @csrf
@@ -19,7 +18,7 @@
                         </x-primary-button>
                     </div>
                 </form>
-                <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit a team</a>
+                <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit Post</a>
                 @endcan
             </div>
             @endif

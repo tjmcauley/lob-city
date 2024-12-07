@@ -61,8 +61,13 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
+        # Only allow admins and owners of posts to update posts
+        if ($request->user()->cannot('edit', $post)) {
+            abort(403);
+        }
+
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -71,6 +76,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        # Only allow admins and owners of posts to update posts
+        if ($request->user()->cannot('update', $post)) {
+            abort(403);
+        }
+
         $file = $request->hasFile('image');
         if ($file) {
             $new_file = $request->file('image');
@@ -93,7 +103,7 @@ class PostController extends Controller
      */
     public function destroy(Request $request, Post $post)
     {
-        # Only allow admins to delete teams
+        # Only allow admins and owners of posts to delete posts
         if ($request->user()->cannot('delete', $post)) {
             abort(403);
         }

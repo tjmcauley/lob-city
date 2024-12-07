@@ -37,5 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         # Post gates
         Gate::define('delete-post',[PostPolicy::class, 'delete']);
+        Gate::define('edit-post',[PostPolicy::class, 'edit']);
+        Gate::define('update-post',[PostPolicy::class, 'update']);
     }
 }
