@@ -40,5 +40,6 @@
             <livewire-create-comment :post="$post" />
         </div>
         @endforeach
+        {{$this->posts()->links();}}
     </ul>
 </div>

@@ -61,24 +61,56 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, Post $post)
     {
-        //
+        # Only allow admins and owners of posts to update posts
+        if ($request->user()->cannot('edit', $post)) {
+            abort(403);
+        }
+
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        # Only allow admins and owners of posts to update posts
+        if ($request->user()->cannot('update', $post)) {
+            abort(403);
+        }
+
+        $file = $request->hasFile('image');
+        if ($file) {
+            $new_file = $request->file('image');
+            $file_path = $new_file->store('images');
+            $post->image_name = $file_path;
+        }
+
+        if ($request['caption'] != null) {
+            $post->caption = $request['caption'];
+        }
+
+        $post->save();
+
+        session()->flash('message', 'post was updated!');
+        return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Post $post)
     {
-        //
+        # Only allow admins and owners of posts to delete posts
+        if ($request->user()->cannot('delete', $post)) {
+            abort(403);
+        }
+        
+            $post->delete();
+        
+            # Flash message
+            return redirect()->route('posts.index')->with('message', 'Post was deleted.');
     }
 }
