@@ -18,5 +18,10 @@ class TagsTableSeeder extends Seeder
         $t1->name = "LA Lakers";
         $t1->save();
         $t1->posts()->attach(1);
+
+        $t2 = new Tag;
+        $t2->name = "Lebron James";
+        $t2->save();
+        $t2->posts()->attach(1);
     }
 }

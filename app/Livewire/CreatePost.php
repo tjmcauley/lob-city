@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 
 class CreatePost extends Component
