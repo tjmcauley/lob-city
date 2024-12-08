@@ -11,7 +11,7 @@ use Livewire\Attributes\Rule;
 class CreateComment extends Component
 {
 
-    public $post_id;
+    public Post $post;
 
     #[Rule('required|min:1|max:200')]
     public $content;
@@ -22,14 +22,14 @@ class CreateComment extends Component
 
         $c = new Comment;
         $c->user_id = Auth::id();
-        $c->post_id = $this->post_id;
+        $c->post_id = $this->post->id;
         $c->content = $this->content;
         $c->save();
     }
 
     public function comments()
     {
-        return Comment::all();
+        return $this->post->comments()->latest()->get();
     }
 
     public function posts()
