@@ -1,51 +1,46 @@
 <x-app-layout>
     <x-slot name="header">
-        <style>
-            h1 {
-                font-size: 150px
-            }
-
-            h2 {
-                font-size: 50px
-            }
-
-            header {    
-                height: 800px;
-                width: 100vw;
-                overflow: hidden;
-            }
-
-            img {
-                object-fit: cover;
-                opacity: 0.4;
-                z-index: -1;
-            }
-
-            section {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: white;
-                font-family: 'Helvetica';
-            }
-        </style>
-        
-        <img src="https://24.media.tumblr.com/4f128698c69f95a8881793b021cf2014/tumblr_mjan9lpopZ1rfimo0o1_400.gif" style="width:100%;">
-            <section>
-                <center>
-                    <h1>Lob City</h1>
-                    <h2>Hoopers' Network</h2>
-                </center>
-            </section>
+        <img class="object-cover opacity-40 w-full"
+            src="https://24.media.tumblr.com/4f128698c69f95a8881793b021cf2014/tumblr_mjan9lpopZ1rfimo0o1_400.gif">
+        <section class="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-white font-serif">
+            <center>
+                <h1 class="text-9xl"> Lob City </h1>
+                <h2 class="text-5xl"> Hoopers' Network</h2>
+            </center>
+        </section>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+                <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-center items-center">
+                    {{ __("My Posts") }}
                 </div>
+
+                <ul>
+                    <div>
+                        @foreach (Auth::user()->posts as $post)
+                        <li style="list-style: none;">
+                            <div class="text-lg font-semibold text-white">
+
+                                <div
+                                    class="text-white text-lg font-semibold text-center bg-gray-800 p-4 rounded-lg shadow-lg max-w-md mx-auto">
+                                    <a href="{{ route('posts.show', $post->user) }}">
+                                        <h1> <u>{{ $post->user->email }}</u> </h1> posted on -
+                                        {{$post->created_at->format('m-d H:i')}}
+                                    </a>
+                                    <h2> {{ $post->caption }} </h2>
+                                </div>
+                                <div class="flex justify-center items-center space-x-4 p-4">
+                                    <img src="{{ asset('/storage/' . $post->image_name) }}" />
+                                </div>
+                                <div class="text-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto">
+                                    <livewire-create-comment :post="$post" />
+                                </div>
+                        </li>
+                        @endforeach
+                    </div>
+                </ul>
             </div>
         </div>
     </div>
