@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Team;
 use App\Models\City;
+use App\Models\Post;
 use App\Models\Venue;
 
 class TeamController extends Controller
@@ -62,7 +63,8 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('teams.show', ['team' => $team]);
+        $posts = Post::all();
+        return view('teams.show', ['team' => $team, 'posts' => $posts]);
     }
 
     /**
