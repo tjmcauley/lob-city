@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Post;
+use App\Models\Tag;
 
 class CityController extends Controller
 {
@@ -44,6 +45,10 @@ class CityController extends Controller
         $c = new City;
         $c->name = $validatedData['name'];
         $c->save();
+
+        $t = new Tag;
+        $t->name = $validatedData['name'];
+        $t->save();
 
         session()->flash('message', 'city was created!');
         return redirect()->route('cities.index');

@@ -8,6 +8,7 @@ use App\Models\Team;
 use App\Models\City;
 use App\Models\Post;
 use App\Models\Venue;
+use App\Models\Tag;
 
 class TeamController extends Controller
 {
@@ -53,6 +54,10 @@ class TeamController extends Controller
         $a->city_id = $validatedData['city_id'];
         $a->venue_id = $validatedData['venue_id'];
         $a->save();
+
+        $t = new Tag;
+        $t->name = $validatedData['name'];
+        $t->save();
 
         session()->flash('message', 'team was created!');
         return redirect()->route('teams.index');

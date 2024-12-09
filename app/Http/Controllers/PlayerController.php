@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PlayerController extends Controller
 {
@@ -48,6 +49,10 @@ class PlayerController extends Controller
         $p->name = $validatedData['name'];
         $p->team_id = $validatedData['team_id'];
         $p->save();
+
+        $t = new Tag;
+        $t->name = $validatedData['name'];
+        $t->save();
 
         session()->flash('message', 'player was created!');
         return redirect()->route('players.index');

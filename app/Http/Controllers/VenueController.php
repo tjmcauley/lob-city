@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Venue;
 use App\Models\City;
 use App\Models\Post;
+use App\Models\Tag;
 
 class VenueController extends Controller
 {
@@ -47,6 +48,10 @@ class VenueController extends Controller
         $v->name = $validatedData['name'];
         $v->city_id = $validatedData['city_id'];
         $v->save();
+
+        $t = new Tag;
+        $t->name = $validatedData['name'];
+        $t->save();
 
         session()->flash('message', 'venue was created!');
         return redirect()->route('venues.index');
