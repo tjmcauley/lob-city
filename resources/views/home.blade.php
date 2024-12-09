@@ -30,9 +30,28 @@
                                     </a>
                                     <h2> {{ $post->caption }} </h2>
                                 </div>
+
+                                <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+                                    @can('authorised', ['post' => $post])
+                                    <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
+                                        @csrf
+                                        @method("DELETE")
+                                        <div class="flex items-center justify-end mt-4">
+                                            <x-primary-button class="ms-3">
+                                                {{ __('Delete') }}
+                                            </x-primary-button>
+                                        </div>
+                                    </form>
+                                    <button action="{{ route('posts.edit', ['post' => $post]) }}">
+                                        Edit Post
+                                    <button>
+                                    @endcan
+                                </div>
+
                                 <div class="flex justify-center items-center space-x-4 p-4">
                                     <img src="{{ asset('/storage/' . $post->image_name) }}" />
                                 </div>
+
                                 <div class="text-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto">
                                     <livewire-create-comment :post="$post" />
                                 </div>
