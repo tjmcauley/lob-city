@@ -3,21 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Team;
-use App\Models\City;
+use App\Models\Player;
 use App\Models\Post;
-use App\Models\Venue;
 
-class TeamController extends Controller
+class PlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teams = Team::all();
-        return view('teams.index', ['teams' => $teams]);
+        $players = Player::all();
+        return view('players.index', ['players' => $players]);
     }
 
     /**
@@ -25,9 +22,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
-        $venues = Venue::all();
-        return view('teams.create', ['cities' => $cities, 'venues' => $venues]);
+        return view('players.create');
     }
 
     /**
@@ -54,17 +49,17 @@ class TeamController extends Controller
         $a->venue_id = $validatedData['venue_id'];
         $a->save();
 
-        session()->flash('message', 'team was created!');
-        return redirect()->route('teams.index');
+        session()->flash('message', 'player was created!');
+        return redirect()->route('players.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Team $team)
+    public function show(Player $player)
     {
         $posts = Post::all();
-        return view('teams.show', ['team' => $team, 'posts' => $posts]);
+        return view('players.show', ['player' => $player, 'posts' => $posts]);
     }
 
     /**
@@ -86,16 +81,8 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Team $team)
+    public function destroy(string $id)
     {
-        # Only allow admins to delete teams
-        if ($request->user()->cannot('delete', $team)) {
-            abort(403);
-        }
-
-        $team->delete();
-
-        # Flash message
-        return redirect()->route('teams.index')->with('message', 'Team was deleted.');
+        //
     }
 }

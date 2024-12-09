@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $team->name }}
+            {{ $venue->name }}
         </h2>
 
         <div class="grid grid-cols-3 gap-4 text-white">
             @foreach ($posts as $post)
             @foreach ($post->tags as $tag)
-            @if ($tag->name === $team->name)
+            @if ($tag->name === $venue->name)
             <div>
                 <h2> {{ $post->caption }} </h2>
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Tag;
 use App\Models\User;
 
 class PostController extends Controller
@@ -68,7 +70,8 @@ class PostController extends Controller
             abort(403);
         }
 
-        return view('posts.edit', ['post' => $post]);
+        $tags = Tag::all();
+        return view('posts.edit', ['post' => $post, 'tags' => $tags]);
     }
 
     /**
@@ -93,6 +96,16 @@ class PostController extends Controller
         }
 
         $post->save();
+
+        if ($request['tag_id'] != null) {
+            # In case the same tag is added to a post more than once
+            try{
+                $post->tags()->attach($request['tag_id']);
+            } catch(QueryException $e) {
+                return redirect()->route('posts.index');
+            }
+            
+        }
 
         session()->flash('message', 'post was updated!');
         return redirect()->route('posts.index');
