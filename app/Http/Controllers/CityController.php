@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\City;
+use App\Models\Post;
 
 class CityController extends Controller
 {
@@ -37,8 +38,8 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-
-        return view('cities.show', ['city' => $city]);
+        $posts = Post::all();
+        return view('cities.show', ['city' => $city, 'posts' => $posts]);
     }
 
     /**
