@@ -37,7 +37,7 @@ class CityController extends Controller
             abort(403);
         }
 
-        //Needs to validate that city and venue ids exist
+        //Needs to validate that name exists
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
