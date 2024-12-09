@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\VenueController;
+use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Middleware\Login;
@@ -25,6 +26,13 @@ Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
+
+# Player routes
+Route::get('/players', [PlayerController::class, 'index'])->name('players.index');
+Route::post('/players', [PlayerController::class, 'store'])->name('players.store');
+Route::get('/players/create', [PlayerController::class, 'create'])->name('players.create');
+Route::get('/players/{player}', [PlayerController::class, 'show'])->name('players.show');
+Route::delete('/players/{player}', [PlayerController::class, 'destroy'])->name('players.destroy');
 
 # Venue routes
 Route::get('/venues', [VenueController::class, 'index'])->name('venues.index');
