@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\VenueController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Middleware\Login;
@@ -24,6 +25,13 @@ Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
+
+# Venue routes
+Route::get('/venues', [VenueController::class, 'index'])->name('venues.index');
+Route::post('/venues', [VenueController::class, 'store'])->name('venues.store');
+Route::get('/venues/create', [VenueController::class, 'create'])->name('venues.create');
+Route::get('/venues/{venue}', [VenueController::class, 'show'])->name('venues.show');
+Route::delete('/venues/{venue}', [VenueController::class, 'destroy'])->name('venues.destroy');
 
 # Post routes
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

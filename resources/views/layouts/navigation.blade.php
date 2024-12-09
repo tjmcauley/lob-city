@@ -15,14 +15,17 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                        {{ __('Posts') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('cities.index')" :active="request()->routeIs('cities.index')">
                         {{ __('Cities') }}
                     </x-nav-link>
                     <x-nav-link :href="route('teams.index')" :active="request()->routeIs('teams.index')">
                         {{ __('Teams') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                        {{ __('Posts') }}
+                    <x-nav-link :href="route('venues.index')" :active="request()->routeIs('venues.index')">
+                        {{ __('Venues') }}
                     </x-nav-link>
                 </div>
             </div>
