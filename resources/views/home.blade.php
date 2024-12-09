@@ -42,9 +42,7 @@
                                             </x-primary-button>
                                         </div>
                                     </form>
-                                    <button action="{{ route('posts.edit', ['post' => $post]) }}">
-                                        Edit Post
-                                    <button>
+                                    <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit Post</a>
                                     @endcan
                                 </div>
 
