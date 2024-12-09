@@ -15,8 +15,8 @@
 
     <!-- Create Post Button-->
     <div
-        class="flex items-center justify-end mt-4 bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 focus:outline-none">
-        <button wire:click="create_post" type="submit">Post</button>
+        class="flex items-center justify-center text-white py-2 rounded-lg">
+        <button wire:click="create_post" type="submit"> <b><u>Post</u></b> </button>
     </div>
 
     <ul>
