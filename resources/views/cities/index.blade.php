@@ -13,6 +13,10 @@
                                 <li><a href="{{ route('cities.show', $city) }}"><b> {{ $city->name }} </b></a></li>
                             @endforeach
                         </ul>
+
+                        @can(abilities: 'admin')
+                        <a href="{{ route('cities.create') }}">Add a city</a>
+                        @endcan
                     </div>
                 </div>
             </div>

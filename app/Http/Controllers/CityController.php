@@ -22,15 +22,31 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('cities.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, City $city)
     {
-        //
+
+        # Only allow admins to add teams
+        if ($request->user()->cannot('create', $city)) {
+            abort(403);
+        }
+
+        //Needs to validate that city and venue ids exist
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $c = new City;
+        $c->name = $validatedData['name'];
+        $c->save();
+
+        session()->flash('message', 'city was created!');
+        return redirect()->route('cities.index');
     }
 
     /**

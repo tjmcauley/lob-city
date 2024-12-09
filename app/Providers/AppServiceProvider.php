@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\City;
+use App\Policies\CityPolicy;
 use App\Policies\TeamPolicy;
 use App\Policies\PostPolicy;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('authorised', function($user, $post) {
             return $user->type === 1 || $user->id === $post->user_id;
         });
+
+        # City gates
+        Gate::define('create-city', [CityPolicy::class, 'create']);
+        Gate::define('delete-city', [CityPolicy::class, 'delete']);
 
         # Team gates
         Gate::define('create-team', [TeamPolicy::class, 'create']);
