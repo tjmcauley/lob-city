@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Player;
+use App\Models\Team;
 use App\Models\Post;
 
 class PlayerController extends Controller
@@ -22,32 +23,31 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        return view('players.create');
+        $teams = Team::all();
+        return view('players.create', ['teams' => $teams]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Team $team)
+    public function store(Request $request, Player $player)
     {
 
         # Only allow admins to add teams
-        if ($request->user()->cannot('create', $team)) {
+        if ($request->user()->cannot('create', $player)) {
             abort(403);
         }
 
         //Needs to validate that city and venue ids exist
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'city_id' => 'required|integer',
-            'venue_id' => 'required|integer',
+            'team_id' => 'required|integer',
         ]);
 
-        $a = new Team;
-        $a->name = $validatedData['name'];
-        $a->city_id = $validatedData['city_id'];
-        $a->venue_id = $validatedData['venue_id'];
-        $a->save();
+        $p = new Player;
+        $p->name = $validatedData['name'];
+        $p->team_id = $validatedData['team_id'];
+        $p->save();
 
         session()->flash('message', 'player was created!');
         return redirect()->route('players.index');

@@ -41,7 +41,6 @@ class VenueController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'city_id' => 'required|integer',
-            'venue_id' => 'required|integer',
         ]);
 
         $v = new Venue;

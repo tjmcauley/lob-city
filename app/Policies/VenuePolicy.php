@@ -29,7 +29,7 @@ class VenuePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->type === 1;
     }
 
     /**
@@ -45,7 +45,7 @@ class VenuePolicy
      */
     public function delete(User $user, Venue $venue): bool
     {
-        //
+        return $user->type === 1;
     }
 
     /**

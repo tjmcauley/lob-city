@@ -29,7 +29,7 @@ class PlayerPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->type === 1;
     }
 
     /**
@@ -45,7 +45,7 @@ class PlayerPolicy
      */
     public function delete(User $user, Player $player): bool
     {
-        //
+        return $user->type === 1;
     }
 
     /**
