@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
-use App\Models\Tag;
+use App\Models\Comment;
 use App\Models\User;
 
 class CreatePost extends Component
@@ -32,7 +32,12 @@ class CreatePost extends Component
 
     public function posts()
     {
-        return Post::orderBy('updated_at', 'desc')->paginate(5);
+        return Post::orderBy('updated_at', 'desc')->paginate(3);
+    }
+
+    public function comments()
+    {
+        return Comment::all();
     }
 
     public function users() 
