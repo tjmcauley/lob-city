@@ -18,7 +18,10 @@ Route::get('/', function () {
 
 # City routes
 Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
+Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
+Route::get('/cities/create', [CityController::class, 'create'])->name('cities.create');
 Route::get('/cities/{city}', [CityController::class, 'show'])->name('cities.show');
+Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
 
 # Team routes
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');

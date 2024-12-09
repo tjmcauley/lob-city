@@ -6,16 +6,29 @@
     </x-slot>
 
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div
+            class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <!-- Session Status -->
             <form method="POST" action="{{ route('players.store') }}">
                 @csrf
                 <!-- Player Name -->
                 <div>
                     <x-input-label for="name" :value="__('Player Name')" />
-                    <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}"/>
+                    <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}" />
                 </div>
-                
+
+                <!-- Team -->
+                <div class="mt-4">
+                    <x-input-label for="team" :value="__('Team')" />
+                    <select name="team_id">
+                        @foreach ($teams as $team)
+                        <option value="{{ $team->id }}">
+                            {{ $team->name  }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button class="ms-3">
                         {{ __('Submit') }}

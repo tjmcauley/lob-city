@@ -1,51 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <style>
-            h1 {
-                font-size: 150px
-            }
+<div>
+    <img class="object-cover w-full"
+        src="https://24.media.tumblr.com/4f128698c69f95a8881793b021cf2014/tumblr_mjan9lpopZ1rfimo0o1_400.gif">
+    <section class="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-white font-serif">
+        <center>
+            <h1 class="text-9xl"> Lob City </h1>
+            <h2 class="text-5xl"> Hoopers' Network</h2>
+        </center>
+    </section>
+</div>
 
-            h2 {
-                font-size: 50px
-            }
-
-            header {    
-                height: 800px;
-                width: 100vw;
-                background:black;
-                overflow: hidden;
-            }
-
-            img {
-                object-fit: cover;
-                opacity: 0.4;
-                z-index: -1;
-            }
-
-            section {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: white;
-                font-family: 'Helvetica';
-            }
-        </style>
-    </head>
-
-    <header>
-        <img src="https://24.media.tumblr.com/4f128698c69f95a8881793b021cf2014/tumblr_mjan9lpopZ1rfimo0o1_400.gif" style="width:100%;">
-        <section>
-            <center>
-                <h1>Lob City</h1>
-                <h2>Hoopers' Network</h2>
-            </center>
-        </section>
-    </header>
+<div>
 
     <body>
-        <x-guest-layout>
-        </x-guest-layout>
+        <x-guest-layout />
     </body>
-</html>
+
+</div>
