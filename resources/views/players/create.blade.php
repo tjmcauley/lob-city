@@ -15,11 +15,13 @@
                 <div>
                     <x-input-label for="name" :value="__('Player Name')" />
                     <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}" />
+
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
                 <!-- Team -->
                 <div class="mt-4">
-                    <x-input-label for="team" :value="__('Team')" />
+                    <x-input-label for="team_id" :value="__('Team')" />
                     <select name="team_id">
                         @foreach ($teams as $team)
                         <option value="{{ $team->id }}">
@@ -27,6 +29,8 @@
                         </option>
                         @endforeach
                     </select>
+
+                    <x-input-error :messages="$errors->get('team_id')" class="mt-2" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">

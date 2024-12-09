@@ -6,38 +6,45 @@
     </x-slot>
 
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div
+            class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <!-- Session Status -->
             <form method="POST" action="{{ route('teams.store') }}">
                 @csrf
                 <!-- Team Name -->
                 <div>
                     <x-input-label for="name" :value="__('Team Name')" />
-                    <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}"/>
+                    <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}" />
+
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
                 <!-- City -->
                 <div class="mt-4">
-                    <x-input-label for="city" :value="__('City')" />
-                        <select name="city_id">
-                            @foreach ($cities as $city)
-                                <option value="{{ $city->id }}">
-                                    {{ $city->name  }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <x-input-label for="city_id" :value="__('City')" />
+                    <select name="city_id">
+                        @foreach ($cities as $city)
+                        <option value="{{ $city->id }}">
+                            {{ $city->name  }}
+                        </option>
+                        @endforeach
+                    </select>
+
+                    <x-input-error :messages="$errors->get('city_id')" class="mt-2" />
                 </div>
 
                 <!-- Venue -->
                 <div class="mt-4">
-                    <x-input-label for="venue" :value="__('Venue')" />
-                        <select name="venue_id">
-                            @foreach ($venues as $venue)
-                                <option value="{{ $venue->id }}">
-                                    {{ $venue->name  }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <x-input-label for="venue_id" :value="__('Venue')" />
+                    <select name="venue_id">
+                        @foreach ($venues as $venue)
+                        <option value="{{ $venue->id }}">
+                            {{ $venue->name  }}
+                        </option>
+                        @endforeach
+                    </select>
+
+                    <x-input-error :messages="$errors->get('venue_id')" class="mt-2" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">

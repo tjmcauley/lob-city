@@ -14,6 +14,8 @@
                 <div>
                     <x-input-label for="name" :value="__('City Name')" />
                     <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}"/>
+
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
