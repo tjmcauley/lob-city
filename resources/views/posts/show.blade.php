@@ -13,7 +13,7 @@
                     <h2> {{ $post->caption }} </h2>
                 </div>
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
-                <div class=" flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+                <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
                     @can('authorised', ['post' => $post])
                     <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
                         @csrf
