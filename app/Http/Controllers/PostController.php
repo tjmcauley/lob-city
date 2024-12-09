@@ -34,6 +34,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //Needs to validate that city and venue ids exist
+        $validatedData = $request->validate([
+            'caption' => 'required|max:255',
+            'image' => 'required|string',
+        ]);
+
         $file = $request->hasFile('image');
         if ($file) {
             $new_file = $request->file('image');

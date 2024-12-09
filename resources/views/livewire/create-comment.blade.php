@@ -17,6 +17,8 @@
             <div class="mt-4">
                 <input wire:model="content" name="content" class="text-black block mt-1 w-full" type="text"
                     value="{{ old('content') }}" />
+
+                    <x-input-error :messages="$errors->get('content')" class="mt-2" />
             </div>
 
             <!-- Post comment button-->
