@@ -10,7 +10,21 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <ul>
                             @foreach ($cities as $city)
-                                <li><a href="{{ route('cities.show', $city) }}"><b> {{ $city->name }} </b></a></li>
+                            <li>
+                                <div class="flex items-center justify-end py-2">
+                                    <a href="{{ route('cities.show', $city) }}"><u> {{ $city->name }} </u></a>
+
+                                    @can('admin')
+                                    <form method="POST" action="{{ route('cities.destroy', ['city' => $city]) }}">
+                                        @csrf
+                                        @method("DELETE")
+                                        <x-primary-button class="ms-3">
+                                            {{ __('Delete') }}
+                                        </x-primary-button>
+                                    </form>
+                                    @endcan
+                                </div>
+                            </li>
                             @endforeach
                         </ul>
 
