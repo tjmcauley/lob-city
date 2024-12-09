@@ -28,11 +28,15 @@ class AppServiceProvider extends ServiceProvider
     {
         # Gates for different user types
         Gate::define('admin', function($user) {
-            return $user->type == 1;
+            return $user->type === 1;
         });
 
         Gate::define('editable', function($user, $post) {
             return $user->id === $post->user_id;
+        });
+
+        Gate::define('deletable', function($user, $post) {
+            return $user->type === 1 || $user->id === $post->user_id;
         });
 
         # City gates

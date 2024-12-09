@@ -32,7 +32,8 @@
                                 </div>
 
                                 <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-                                    @can('authorised', ['post' => $post])
+
+                                    @can('deletable', ['post' => $post])
                                     <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
                                         @csrf
                                         @method("DELETE")
@@ -42,6 +43,9 @@
                                             </x-primary-button>
                                         </div>
                                     </form>
+                                    @endcan
+
+                                    @can('editable', ['post' => $post])
                                     <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit Post</a>
                                     @endcan
                                 </div>
