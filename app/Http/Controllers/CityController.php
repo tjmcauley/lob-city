@@ -82,8 +82,20 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, City $city)
     {
-        //
+        {
+            # Only allow admins and owners of posts to delete posts
+            if ($request->user()->cannot('delete', $city)) {
+                abort(403);
+            }
+            
+                Tag::where('name', $city->name)->delete();
+                $city->delete();
+                
+            
+                # Flash message
+                return redirect()->route('cities.index')->with('message', 'City was deleted.');
+        }
     }
 }

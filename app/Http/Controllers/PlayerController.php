@@ -86,8 +86,19 @@ class PlayerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Player $player)
     {
-        //
+        {
+            # Only allow admins and owners of posts to delete posts
+            if ($request->user()->cannot('delete', $player)) {
+                abort(403);
+            }
+                
+                Tag::where('name', $player->name)->delete();
+                $player->delete();
+            
+                # Flash message
+                return redirect()->route('players.index')->with('message', 'Player was deleted.');
+        }
     }
 }

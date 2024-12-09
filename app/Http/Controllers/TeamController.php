@@ -98,6 +98,7 @@ class TeamController extends Controller
             abort(403);
         }
 
+        Tag::where('name', $team->name)->delete();
         $team->delete();
 
         # Flash message
