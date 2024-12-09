@@ -124,6 +124,6 @@ class PostController extends Controller
             $post->delete();
         
             # Flash message
-            return redirect()->route('posts.index')->with('message', 'Post was deleted.');
+            return redirect()->route('home')->with('message', 'Post was deleted.');
     }
 }
