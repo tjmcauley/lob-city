@@ -31,11 +31,16 @@
                     <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit Post</a>
                     @endcan
                 </div>
-                
+
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
+
+                @foreach ($post->comments as $comment)
+                @if($comment->user_id === $user->id)
                 <div class="text-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto">
-                    <livewire-create-comment :post="$post" />
+                <h2> {{ $comment->user->email }}: {{ $comment->content }} </h2>
                 </div>
+                @endif
+                @endforeach
             </div>
             @endif
             @endforeach
