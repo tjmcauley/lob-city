@@ -7,7 +7,7 @@
             </div>
             @else
             @foreach ($this->comments() as $comment)
-            <h2> <a href="{{ route('posts.show', $comment->user) }}" >{{ $comment->user->email }}: {{ $comment->content }}</h2>
+            <h2> <a href="{{ route('posts.show', $comment->user) }}"> {{ $comment->user->email }}:</a> {{ $comment->content }}</h2>
             @endforeach
             @endif
         </div>

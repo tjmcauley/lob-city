@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Viewing posts by <u>{{ $user->email }}</u>
+            Posts by <u>{{ $user->email }}</u>
         </h2>
-        <div class="grid grid-cols-3 gap-4 text-white">
+        <div class="grid grid-cols-3 gap-4 text-white border-2 border-black">
             @foreach ($posts as $post)
             @if ($post->user_id === $user->id)
             <div>
@@ -33,16 +33,28 @@
                 </div>
 
                 <img src="{{ asset('/storage/' . $post->image_name) }}" />
-
-                @foreach ($post->comments as $comment)
-                @if($comment->user_id === $user->id)
-                <div class="text-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto">
-                <h2> {{ $comment->user->email }}: {{ $comment->content }} </h2>
-                </div>
-                @endif
-                @endforeach
+                <livewire-create-comment :post="$post">
             </div>
             @endif
+            @endforeach
+        </div>
+
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pt-10">
+            Comments by <u>{{ $user->email }}</u>
+        </h2>
+
+        <div class="grid grid-cols-3 gap-4 text-white border-2 border-black">
+
+            @foreach ($posts as $post)
+            @foreach ($post->comments as $comment)
+            @if($comment->user_id === $user->id)
+            <div class="shadow-lg p-4 min-w-full">
+                <h2>
+                    <center>{{ $comment->user->email }}: {{ $comment->content }} </center>
+                </h2>
+            </div>
+            @endif
+            @endforeach
             @endforeach
         </div>
     </x-slot>
