@@ -32,7 +32,7 @@ class CityController extends Controller
     public function store(Request $request, City $city)
     {
 
-        # Only allow admins to add teams
+        # Only allow admins to add cities
         if ($request->user()->cannot('create', $city)) {
             abort(403);
         }
