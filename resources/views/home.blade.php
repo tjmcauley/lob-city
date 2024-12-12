@@ -46,7 +46,7 @@
                                     @endcan
 
                                     @can('editable', ['post' => $post])
-                                    <a href="{{ route('posts.edit', ['post' => $post]) }}">Edit Post</a>
+                                    <a href="{{ route('posts.edit', ['post' => $post]) }}" title="Click to edit this post">Edit Post</a>
                                     @endcan
                                 </div>
 

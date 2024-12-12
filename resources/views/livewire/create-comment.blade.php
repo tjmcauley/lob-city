@@ -23,7 +23,7 @@
 
             <!-- Post comment button-->
             <div class="flex items-center justify-end mt-4">
-                <button class="ms-3" wire:click="post_comments" type="submit">Comment</button>
+                <button class="ms-3" wire:click="post_comments" type="submit" title="Post a comment">Comment</button>
             </div>
         </div>
     </div>

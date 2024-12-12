@@ -12,7 +12,8 @@
                             @foreach ($cities as $city)
                             <li>
                                 <div class="flex items-center justify-end py-2">
-                                    <a href="{{ route('cities.show', $city) }}"><u> {{ $city->name }} </u></a>
+                                    <a href="{{ route('cities.show', $city) }}"
+                                        title="View posts tagged with {{ $city->name }}"><u> {{ $city->name }} </u></a>
 
                                     @can('admin')
                                     <form method="POST" action="{{ route('cities.destroy', ['city' => $city]) }}">
