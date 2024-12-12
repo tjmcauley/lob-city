@@ -12,22 +12,22 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" title="Return to home">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')" title="View the public feed of posts">
                         {{ __('Posts') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('cities.index')" :active="request()->routeIs('cities.index')">
+                    <x-nav-link :href="route('cities.index')" :active="request()->routeIs('cities.index')" title="View posts tagged with a city">
                         {{ __('Cities') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('teams.index')" :active="request()->routeIs('teams.index')">
+                    <x-nav-link :href="route('teams.index')" :active="request()->routeIs('teams.index')" title="View posts tagged with a team">
                         {{ __('Teams') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('players.index')" :active="request()->routeIs('players.index')">
+                    <x-nav-link :href="route('players.index')" :active="request()->routeIs('players.index')" title="View posts tagged with a player">
                         {{ __('Players') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('venues.index')" :active="request()->routeIs('venues.index')">
+                    <x-nav-link :href="route('venues.index')" :active="request()->routeIs('venues.index')" title="View posts tagged with a venue">
                         {{ __('Venues') }}
                     </x-nav-link>
                 </div>

@@ -12,7 +12,8 @@
                             @foreach ($teams as $team)
                             <li>
                                 <div class="flex items-center justify-end py-2">
-                                    <a href="{{ route('teams.show', $team) }}"><u> {{ $team->name }} </u></a>
+                                    <a href="{{ route('teams.show', $team) }}"
+                                        title="View posts tagged with {{ $team->name }}"><u> {{ $team->name }} </u></a>
 
                                     @can('admin')
                                     <form method="POST" action="{{ route('teams.destroy', ['team' => $team]) }}">
