@@ -86,21 +86,27 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        #Count career games, points, assists, blocks, steals
-        $career_games = DB::table('stats')->where('player_id', '=', $player->id)->sum('games');
-        $career_points = DB::table('stats')->where('player_id', '=', $player->id)->sum('points');
-        $career_assists = DB::table('stats')->where('player_id', '=', $player->id)->sum('assists');
-        $career_blocks = DB::table('stats')->where('player_id', '=', $player->id)->sum('blocks');
-        $career_steals = DB::table('stats')->where('player_id', '=', $player->id)->sum('steals');
-
-        # Get player's most recent year
-        $total_years = $player->stats->count();
-        $recent_stats = $player->stats[$total_years - 1];
-
+        
         $posts = Post::all();
-        return view('players.show', ['player' => $player, 'posts' => $posts,
-        'career_games' => $career_games, 'career_points' => $career_points, 'career_assists' => $career_assists,
-        'career_blocks' => $career_blocks, 'career_steals' => $career_steals, 'recent_stats' => $recent_stats]);
+
+        if ($player->stats->count() != 0) {
+            #Count career games, points, assists, blocks, steals
+            $career_games = DB::table('stats')->where('player_id', '=', $player->id)->sum('games');
+            $career_points = DB::table('stats')->where('player_id', '=', $player->id)->sum('points');
+            $career_assists = DB::table('stats')->where('player_id', '=', $player->id)->sum('assists');
+            $career_blocks = DB::table('stats')->where('player_id', '=', $player->id)->sum('blocks');
+            $career_steals = DB::table('stats')->where('player_id', '=', $player->id)->sum('steals');
+
+            # Get player's most recent year
+            $total_years = $player->stats->count();
+            $recent_stats = $player->stats[$total_years - 1];
+
+            return view('players.show', ['player' => $player, 'posts' => $posts,
+            'career_games' => $career_games, 'career_points' => $career_points, 'career_assists' => $career_assists,
+            'career_blocks' => $career_blocks, 'career_steals' => $career_steals, 'recent_stats' => $recent_stats]);
+        }
+
+        return view('players.show', ['player' => $player, 'posts' => $posts]); 
     }
 
     /**
