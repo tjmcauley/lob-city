@@ -44,16 +44,11 @@ Route::get('/venues/{venue}', [VenueController::class, 'show'])->name('venues.sh
 Route::delete('/venues/{venue}', [VenueController::class, 'destroy'])->name('venues.destroy');
 
 # Post routes
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/posts/{user}', [PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{post}/', [PostController::class, 'update'])->name('posts.update');
-
-# Comment routes
-Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
 
 # Home view once logged in
 Route::get('/home', function () {
