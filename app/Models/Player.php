@@ -11,5 +11,9 @@ class Player extends Model
     
     public function team() {
         return $this->belongsTo(Team::class);
+    }
+
+    public function stats() {
+        return $this->hasMany(Stat::class);
     } 
 }
