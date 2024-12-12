@@ -7,7 +7,7 @@
             </div>
             @else
             @foreach ($this->comments() as $comment)
-            <h2>{{ $comment->content }}</h2>
+            <h2> <a href="{{ route('posts.show', $comment->user) }}"> {{ $comment->user->email }}:</a> {{ $comment->content }}</h2>
             @endforeach
             @endif
         </div>
@@ -17,6 +17,8 @@
             <div class="mt-4">
                 <input wire:model="content" name="content" class="text-black block mt-1 w-full" type="text"
                     value="{{ old('content') }}" />
+
+                <x-input-error :messages="$errors->get('content')" class="mt-2" />
             </div>
 
             <!-- Post comment button-->

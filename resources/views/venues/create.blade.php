@@ -13,13 +13,15 @@
                 @csrf
                 <!-- Venue Name -->
                 <div>
-                    <x-input-label for="name" :value="__('Team Name')" />
+                    <x-input-label for="name" :value="__('Venue Name')" />
                     <x-text-input name="name" class="block mt-1 w-full" type="text" value="{{ old('name') }}" />
+
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
                 <!-- City -->
                 <div class="mt-4">
-                    <x-input-label for="city" :value="__('City')" />
+                    <x-input-label for="city_id" :value="__('City')" />
                     <select name="city_id">
                         @foreach ($cities as $city)
                         <option value="{{ $city->id }}">
@@ -27,6 +29,8 @@
                         </option>
                         @endforeach
                     </select>
+
+                    <x-input-error :messages="$errors->get('city_id')" class="mt-2" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">

@@ -39,7 +39,7 @@ class PlayerController extends Controller
             abort(403);
         }
 
-        //Needs to validate that city and venue ids exist
+        //Needs to validate that name and team id exist
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'team_id' => 'required|integer',

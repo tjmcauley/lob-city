@@ -2,17 +2,21 @@
     <!-- Caption -->
     <div class="mt-4">
         <input wire:model="caption" name="caption" class="block mt-1 w-full" type="text" value="{{ old('content') }}" />
+        
+        <x-input-error :messages="$errors->get('caption')" class="mt-2" />
     </div>
 
     <!-- Image -->
     <div class="mt-4 text-white">
         <input wire:model="image" name="image" class="block mt-1 w-full" type="file" />
+
+        <x-input-error :messages="$errors->get('image')" class="mt-2" />
     </div>
 
     <!-- Create Post Button-->
     <div
-        class="flex items-center justify-end mt-4 bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 focus:outline-none">
-        <button wire:click="create_post" type="submit">Post</button>
+        class="flex items-center justify-center text-white py-2 rounded-lg">
+        <button wire:click="create_post" type="submit"> <b><u>Post</u></b> </button>
     </div>
 
     <ul>

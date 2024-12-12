@@ -32,12 +32,12 @@ class CityController extends Controller
     public function store(Request $request, City $city)
     {
 
-        # Only allow admins to add teams
+        # Only allow admins to add cities
         if ($request->user()->cannot('create', $city)) {
             abort(403);
         }
 
-        //Needs to validate that city and venue ids exist
+        //Needs to validate that name exists
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
