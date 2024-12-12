@@ -25,6 +25,8 @@ class CreateComment extends Component
         $c->post_id = $this->post->id;
         $c->content = $this->content;
         $c->save();
+
+        $this->reset(['content']);
     }
 
     public function comments()

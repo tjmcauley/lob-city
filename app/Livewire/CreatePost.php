@@ -37,6 +37,8 @@ class CreatePost extends Component
             $p->likes = 0;
             $p->save();
         }
+
+        $this->reset(['image', 'caption']);
     }
 
     public function posts()
