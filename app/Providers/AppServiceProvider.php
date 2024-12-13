@@ -10,15 +10,18 @@ use App\Policies\VenuePolicy;
 use App\Policies\PostPolicy;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Services\PlayerStatsContainer;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
+    public function register()
     {
-        //
+        $this->app->singleton(PlayerStatsContainer::class, function ($app) {
+            return new PlayerStatsContainer();
+        });
     }
 
     /**
