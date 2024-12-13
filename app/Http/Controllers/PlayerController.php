@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use App\Models\Player;
 use App\Models\Team;
 use App\Models\Post;
 use App\Models\Tag;
-use App\Models\Stat;
+use App\Services\PlayerStatsContainer;
 
 class PlayerController extends Controller
 {
+    protected $player_stats_service;
+
+    public function __construct(PlayerStatsContainer $player_stats_service)
+    {
+        $this->player_stats_service = $player_stats_service;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -57,25 +63,7 @@ class PlayerController extends Controller
         $t->name = $validatedData['name'];
         $t->save();
 
-
-        # API call to get info about the given player
-        $response = Http::get('http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/name/' . $p->name);
-        if ($response->failed()) {
-            echo 'No stats for ' . $p->name . '. Continuing...' . PHP_EOL;
-        } else {
-            $stats = $response->json();
-            for ($i = 0; $i < count($stats); $i++) {
-                $s = new Stat;
-                $s->player_id = $p->id;
-                $s->season = $stats[$i]['season'];
-                $s->games = $stats[$i]['games'];
-                $s->points = $stats[$i]['points'];
-                $s->assists = $stats[$i]['assists'];
-                $s->blocks = $stats[$i]['blocks'];
-                $s->steals = $stats[$i]['steals'];
-                $s->save();
-            }
-        } 
+        $this->player_stats_service->player_stats_api($p);
 
         session()->flash('message', 'player was created!');
         return redirect()->route('players.index');

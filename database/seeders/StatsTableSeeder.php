@@ -7,9 +7,17 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Seeder;
 use App\Models\Stat;
 use App\Models\Player;
+use App\Services\PlayerStatsContainer;
 
 class StatsTableSeeder extends Seeder
 {
+    protected $player_stats_service;
+
+    public function __construct(PlayerStatsContainer $player_stats_service)
+    {
+        $this->player_stats_service = $player_stats_service;
+    }
+
     /**
      * Run the database seeds.
      */
@@ -17,26 +25,7 @@ class StatsTableSeeder extends Seeder
     {
         $players = Player::get();
         foreach ($players as $player) {
-
-            # API call to get info about the given player
-            $response = Http::get('http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/name/' . $player->name);
-            if ($response->failed()) {
-                echo 'No stats for ' . $player->name . '. Continuing...' . PHP_EOL;
-                continue;
-            } 
-
-            $stats = $response->json();
-            for ($i = 0; $i < count($stats); $i++) {
-                $s = new Stat;
-                $s->player_id = $player->id;
-                $s->season = $stats[$i]['season'];
-                $s->games = $stats[$i]['games'];
-                $s->points = $stats[$i]['points'];
-                $s->assists = $stats[$i]['assists'];
-                $s->blocks = $stats[$i]['blocks'];
-                $s->steals = $stats[$i]['steals'];
-                $s->save();
-            }
+            $this->player_stats_service->player_stats_api($player);
         } 
     }
 }
