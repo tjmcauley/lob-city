@@ -17,7 +17,6 @@ class StatsTableSeeder extends Seeder
     {
         $this->player_stats_service = $player_stats_service;
     }
-
     /**
      * Run the database seeds.
      */

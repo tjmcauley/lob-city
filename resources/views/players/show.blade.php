@@ -14,6 +14,7 @@
             <p class="p-1">
                 "{{ $player->name }} is a professional basketball player for the {{ $player->team->name }}."
             </p>
+            @if ($player->stats->count() != 0)
             <p class="p-1">
                 "In their latest playing season, they scored {{ $recent_stats->points }} points and
                 made {{ $recent_stats->assists }} dimes." </p>
@@ -25,6 +26,7 @@
             <p> {{ $career_points }} points, {{ $career_assists }} assists, {{ $career_blocks }} blocks and
                 {{ $career_steals }} steals."
             </p>
+            @endif
         </div>
 
         <div class="grid grid-cols-3 gap-4 text-white">
